@@ -4,7 +4,7 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<div class="container mt-page">
+<div class="container mt-page admin-dashboard">
 
     <!-- Header -->
     <div class="page-header d-flex justify-content-between align-items-center mb-5">
@@ -25,7 +25,7 @@
     }
 
     <!-- Users -->
-    <div class="form-card p-4 mb-5">
+    <div class="form-card admin-dashboard-card p-4 mb-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="fw-700 mb-0">Users</h5>
             <span class="text-muted" style="font-size:var(--font-size-sm);">
@@ -42,8 +42,8 @@
         }
         else
         {
-            <div class="table-responsive">
-                <table class="table align-middle mb-0">
+            <div class="table-responsive admin-dashboard-table-wrap">
+                <table class="table align-middle mb-0 admin-dashboard-table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -61,10 +61,10 @@
                                     <div class="d-flex align-items-center gap-2">
                                         <img src="@(user.ProfileImagepath ?? "/imgs/default.jpg")"
                                              class="avatar-img" alt="@user.FirstName" />
-                                        <span>@user.FirstName @user.LastName</span>
+                                        <span class="admin-cell-text">@user.FirstName @user.LastName</span>
                                     </div>
                                 </td>
-                                <td>@user.Email</td>
+                                <td class="admin-cell-email">@user.Email</td>
                                 <td>
                                     <span class="badge bg-secondary">@user.Role</span>
                                 </td>
@@ -90,7 +90,7 @@
     </div>
 
     <!-- Notes -->
-    <div class="form-card p-4">
+    <div class="form-card admin-dashboard-card p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="fw-700 mb-0">Notes</h5>
             <span class="text-muted" style="font-size:var(--font-size-sm);">
@@ -107,8 +107,8 @@
         }
         else
         {
-            <div class="table-responsive">
-                <table class="table align-middle mb-0">
+            <div class="table-responsive admin-dashboard-table-wrap">
+                <table class="table align-middle mb-0 admin-dashboard-table">
                     <thead>
                         <tr>
                             <th>Title</th>
@@ -122,8 +122,8 @@
                         @foreach (var note in Model.Notes)
                         {
                             <tr>
-                                <td>@note.Title</td>
-                                <td>@note.User?.FirstName @note.User?.LastName</td>
+                                <td class="admin-cell-title">@note.Title</td>
+                                <td class="admin-cell-owner">@note.User?.FirstName @note.User?.LastName</td>
                                 <td>
                                     @if (note.State)
                                     {

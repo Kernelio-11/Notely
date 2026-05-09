@@ -97,6 +97,17 @@
     --input-text:         var(--text-primary);
     --input-placeholder:  var(--text-muted);
     --input-focus-ring:   0 0 0 3px rgba(79,70,229,.2);
+
+    /* Admin dashboard */
+    --admin-table-head-text:      var(--text-secondary);
+    --admin-table-head-bg:        var(--bg-muted);
+    --admin-table-head-border:    var(--border-color);
+    --admin-table-cell-border:    var(--border-color);
+    --admin-table-row-hover:      rgba(79,70,229,.08);
+    --admin-badge-secondary-bg:   var(--bg-muted);
+    --admin-badge-secondary-text: var(--text-secondary);
+    --admin-badge-success-bg:     rgba(16,185,129,.15);
+    --admin-badge-success-text:   #059669;
 }
 
 /* ── Dark theme ──────────────────────────────────────────────── */
@@ -133,6 +144,16 @@
     --input-border:         #334155;
     --input-text:           #f1f5f9;
     --input-focus-ring:     0 0 0 3px rgba(99,102,241,.25);
+
+    --admin-table-head-text:      #cbd5e1;
+    --admin-table-head-bg:        rgba(15,23,42,.45);
+    --admin-table-head-border:    #475569;
+    --admin-table-cell-border:    #334155;
+    --admin-table-row-hover:      rgba(99,102,241,.12);
+    --admin-badge-secondary-bg:   rgba(148,163,184,.24);
+    --admin-badge-secondary-text: #e2e8f0;
+    --admin-badge-success-bg:     rgba(16,185,129,.22);
+    --admin-badge-success-text:   #6ee7b7;
 }
 
 /* ── Base document styles ──────────────────────────────────── */

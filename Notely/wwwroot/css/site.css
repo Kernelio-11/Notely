@@ -61,3 +61,55 @@
 
 /* Hide empty validation summary (renders even when no errors) */
 .validation-summary-valid { display: none !important; }
+
+/* Admin dashboard */
+.admin-dashboard .admin-dashboard-card {
+    max-width: 100%;
+}
+
+.admin-dashboard .admin-dashboard-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.admin-dashboard .admin-dashboard-table th,
+.admin-dashboard .admin-dashboard-table td,
+.admin-dashboard .admin-cell-text {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.admin-dashboard .admin-dashboard-table th:last-child,
+.admin-dashboard .admin-dashboard-table td:last-child {
+    white-space: nowrap;
+    width: 1%;
+}
+
+.admin-dashboard .admin-dashboard-table {
+    color: var(--text-primary);
+}
+
+.admin-dashboard .admin-dashboard-table thead th {
+    color: var(--admin-table-head-text);
+    background: var(--admin-table-head-bg);
+    border-bottom-color: var(--admin-table-head-border);
+}
+
+.admin-dashboard .admin-dashboard-table td {
+    border-color: var(--admin-table-cell-border);
+}
+
+.admin-dashboard .admin-dashboard-table tbody tr:hover {
+    background: var(--admin-table-row-hover);
+}
+
+.admin-dashboard .badge.bg-secondary {
+    background: var(--admin-badge-secondary-bg) !important;
+    color: var(--admin-badge-secondary-text) !important;
+}
+
+.admin-dashboard .badge.bg-success {
+    background: var(--admin-badge-success-bg) !important;
+    color: var(--admin-badge-success-text) !important;
+}
