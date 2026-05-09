@@ -8,6 +8,7 @@
     var profileImage = !string.IsNullOrEmpty(user?.ProfileImagepath)
         ? user.ProfileImagepath
         : "/imgs/default.jpg";
+    var isAdmin = string.Equals(user?.Role, "Admin", StringComparison.OrdinalIgnoreCase);
 }
 
 <!DOCTYPE html>
@@ -103,6 +104,13 @@
                                     <a class="dropdown-item" asp-controller="Notes" asp-action="Index">
                                         <i class="bi bi-journals"></i> My Notes
                                     </a>
+
+                                    @if (isAdmin)
+                                    {
+                                        <a class="dropdown-item" asp-controller="Admin" asp-action="Index">
+                                            <i class="bi bi-shield-check"></i> Admin Dashboard
+                                        </a>
+                                    }
 
                                     <hr />
 

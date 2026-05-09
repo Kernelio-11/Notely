@@ -21,6 +21,10 @@ namespace Notely.Models
         [MaxLength(300)]
         public string? ProfileImagepath { get; set; }
 
+        [Required]
+        [MaxLength(20)]
+        public string Role { get; set; } = "User";
+
         public ICollection<Note> Notes { get; set; } = new List<Note>();
     }
 }

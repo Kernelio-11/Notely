@@ -68,6 +68,8 @@ namespace Notely.Controllers
                 filePath = "/imgs/" + fileName;
             }
 
+            bool hasAdmin = await _context.Users.AnyAsync(u => u.Role == "Admin");
+
             var user = new ApplicationUser
             {
                 FirstName = model.FirstName,
@@ -75,6 +77,7 @@ namespace Notely.Controllers
                 UserName = model.Email,
                 Email = model.Email,
                 ProfileImagepath = filePath,
+                Role = hasAdmin ? "User" : "Admin",
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);

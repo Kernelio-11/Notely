@@ -13,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromHours(6);
+    options.AccessDeniedPath = "/Error/AccessDenied";
+    options.LoginPath = "/Account/Login";
 });
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>((options =>
@@ -43,6 +45,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
