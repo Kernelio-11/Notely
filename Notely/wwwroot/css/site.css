@@ -64,26 +64,7 @@
 
 /* Admin dashboard */
 .admin-dashboard .admin-dashboard-card {
-    max-width: 100%;
-}
-
-.admin-dashboard .admin-dashboard-table {
-    width: 100%;
-    table-layout: fixed;
-}
-
-.admin-dashboard .admin-dashboard-table th,
-.admin-dashboard .admin-dashboard-table td,
-.admin-dashboard .admin-cell-text {
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
-
-.admin-dashboard .admin-dashboard-table th:last-child,
-.admin-dashboard .admin-dashboard-table td:last-child {
-    white-space: nowrap;
-    width: 1%;
+    max-width: 90%;
 }
 
 .admin-dashboard .admin-dashboard-table {

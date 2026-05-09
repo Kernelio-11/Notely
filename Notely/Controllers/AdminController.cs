@@ -22,28 +22,17 @@ namespace Notely.Controllers
 
         private async Task<bool> IsAdmin()
         {
-            var user = await GetCurrentUser();
+            var user = await _userManager.GetUserAsync(User);
             return user != null && string.Equals(user.Role, "Admin", StringComparison.OrdinalIgnoreCase);
         }
 
-        private async Task<ApplicationUser?> GetCurrentUser()
-        {
-            return await _userManager.GetUserAsync(User);
-        }
-
-        private async Task<IActionResult?> RequireAdmin()
-        {
-            if (!await IsAdmin())
-                return StatusCode(403);
-
-            return null;
-        }
+       
 
         public async Task<IActionResult> Index()
         {
-            var guardResult = await RequireAdmin();
-            if (guardResult != null)
-                return guardResult;
+            var isAdmin = await IsAdmin();
+            if (!isAdmin)
+                return StatusCode(403);
 
             var model = new AdminDashboardViewModel
             {
@@ -63,18 +52,16 @@ namespace Notely.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var guardResult = await RequireAdmin();
-            if (guardResult != null)
-                return guardResult;
+            var isAdmin = await IsAdmin();
+            if (!isAdmin)
+                return StatusCode(403);
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-
+            
             if (user == null)
                 return NotFound();
 
-            var currentUser = await GetCurrentUser();
-            if (currentUser == null)
-                return StatusCode(403);
+            var currentUser = await _userManager.GetUserAsync(User);
 
             if (currentUser.Id == user.Id)
             {
@@ -112,9 +99,9 @@ namespace Notely.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteNote(int id)
         {
-            var guardResult = await RequireAdmin();
-            if (guardResult != null)
-                return guardResult;
+            var isAdmin = await IsAdmin();
+            if (!isAdmin)
+                return StatusCode(403);
 
             var note = await _context.Notes.FindAsync(id);
 

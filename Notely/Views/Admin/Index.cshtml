@@ -111,6 +111,7 @@
                 <table class="table align-middle mb-0 admin-dashboard-table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Title</th>
                             <th>Owner</th>
                             <th>Visibility</th>
@@ -122,6 +123,7 @@
                         @foreach (var note in Model.Notes)
                         {
                             <tr>
+                                <td>@note.Id</td>
                                 <td class="admin-cell-title">@note.Title</td>
                                 <td class="admin-cell-owner">@note.User?.FirstName @note.User?.LastName</td>
                                 <td>
