@@ -49,24 +49,34 @@ namespace Notely.Controllers
             return View(await notes.ToListAsync());
         }
 
-        public async Task<IActionResult> Private()
+        public async Task<IActionResult> Private(string? search)
         {
             int? userId = GetCurrentUserId();
 
-            var notes = await _context.Notes
-                .Where(n => n.UserId == userId && !n.State)
-                .ToListAsync();
+            var notes = _context.Notes
+                .Where(n => n.UserId == userId && !n.State);
 
-            return View("Index", notes);
+            if (!string.IsNullOrEmpty(search))
+            {
+                notes = notes.Where(n => n.Title.Contains(search));
+            }
+
+            var result = await notes.ToListAsync();
+            return View("Index", result);
         }
 
-        public async Task<IActionResult> Public()
+        public async Task<IActionResult> Public(string? search)
         {
-            var notes = await _context.Notes
-                .Where(n => n.State)
-                .ToListAsync();
+            var notes =  _context.Notes
+                .Where(n => n.State);
 
-            return View("Index", notes);
+            if (!string.IsNullOrEmpty(search))
+            {
+                notes = notes.Where(n => n.Title.Contains(search));
+            }
+
+            var result = await notes.ToListAsync();
+            return View("Index", result);
         }
 
         //GET: Notes/Details/id

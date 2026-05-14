@@ -33,7 +33,7 @@
     <div class="d-flex justify-content-center mb-5">
 
         <form method="get"
-              asp-action="Index"
+              asp-action="@ViewContext.RouteData.Values["action"]"
               class="search-wrapper position-relative">
 
             <i class="bi bi-search search-icon"></i>
