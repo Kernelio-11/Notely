@@ -80,6 +80,17 @@
                                             Delete
                                         </button>
                                     </form>
+                                    <form asp-action="PromoteToAdmin" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@user.Id" />
+
+                                        <button type="submit"
+                                                class="btn btn-outline-warning btn-sm"
+                                                onclick="return confirm('Promote this user to Admin?')">
+                                            <i class="bi bi-shield-check me-1"></i>
+                                            Promote
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         }

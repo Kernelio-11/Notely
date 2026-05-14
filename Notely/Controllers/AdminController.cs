@@ -116,6 +116,33 @@ namespace Notely.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PromoteToAdmin(int id)
+        {
+            if (!await IsAdmin())
+                return StatusCode(403);
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+                return NotFound();
+
+            if (string.Equals(user.Role, "Admin", StringComparison.OrdinalIgnoreCase))
+            {
+                TempData["AdminMessage"] = "This user is already an Admin.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            user.Role = "Admin";
+
+            await _context.SaveChangesAsync();
+
+            TempData["AdminMessage"] = $"{user.FirstName} is now an Admin.";
+
+            return RedirectToAction(nameof(Index));
+        }
+
         private void DeleteImageFile(string? imagePath)
         {
             if (string.IsNullOrEmpty(imagePath))

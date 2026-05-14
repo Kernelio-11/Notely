@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Notely.Models;
@@ -84,7 +83,6 @@ namespace Notely.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: true);
-                TempData["Toast"] = "Welcome to Notely! 🎉";
 
                 return RedirectToAction("Index", "Notes");
             }
@@ -108,6 +106,7 @@ namespace Notely.Controllers
             }
 
             ViewData["ReturnUrl"] = returnUrl;
+
             return View();
         }
 
@@ -131,8 +130,6 @@ namespace Notely.Controllers
 
             if (result.Succeeded)
             {
-                TempData["Toast"] = "Welcome back! 👋";
-
                 if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     return Redirect(returnUrl);
 
@@ -227,7 +224,6 @@ namespace Notely.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [HttpPost]
         public async Task<IActionResult> DeleteAccount()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -235,12 +231,10 @@ namespace Notely.Controllers
             if (user == null)
                 return RedirectToAction("Login");
 
-            // get all user notes
             var notes = _context.Notes
                 .Where(n => n.UserId == user.Id)
                 .ToList();
 
-            // delete note images
             foreach (var note in notes)
             {
                 if (!string.IsNullOrEmpty(note.ImagePath))

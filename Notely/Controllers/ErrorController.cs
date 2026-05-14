@@ -5,6 +5,16 @@ namespace Notely.Controllers
 {
     public class ErrorController : Controller
     {
+        [Route("Error")]
+        public IActionResult Error()
+        {
+            var model = new ErrorViewModel { RequestId = HttpContext.TraceIdentifier };
+            return View("~/Views/Shared/Error.cshtml", model);
+        }
+
+
+
+
         [Route("Error/{statusCode}")]
         public IActionResult Status(int statusCode)
         {
@@ -13,7 +23,7 @@ namespace Notely.Controllers
                 return View("AccessDenied");
             }
 
-            if (statusCode == 404)
+            if (statusCode == 404  || statusCode == 405)
             {
                 return View("NotFound");
             }

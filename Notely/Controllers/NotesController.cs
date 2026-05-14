@@ -175,22 +175,19 @@ namespace Notely.Controllers
                 if (note.ImageFile != null)
                 {
 
-                    Console.WriteLine("#######################################");
                     if (!string.IsNullOrEmpty(existingNote.ImagePath))
                     {
                         var oldImagePath = Path.Combine(
                             _env.WebRootPath,
                             existingNote.ImagePath.TrimStart('/').Replace('/', Path.DirectorySeparatorChar)
                         );
-                        
-                        Console.WriteLine(oldImagePath);
 
                         if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-                    Console.WriteLine("#######################################");
+
 
 
                     string uploadsFolder = Path.Combine(_env.WebRootPath, "imgs");
